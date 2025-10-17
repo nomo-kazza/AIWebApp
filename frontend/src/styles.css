@@ -1,0 +1,161 @@
+:root {
+  --bg: #f7fafc;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #0ea5a4
+}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+  background: var(--bg);
+  color: #0f172a
+}
+
+.container {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 20px
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.6rem
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 6px
+}
+
+.prompt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px
+}
+
+textarea {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  resize: vertical
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px
+}
+
+button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 0;
+  background: var(--accent);
+  color: white;
+  cursor: pointer
+}
+
+button[disabled] {
+  opacity: .6;
+  cursor: default
+}
+
+.history {
+  margin-top: 20px
+}
+
+.history-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.empty {
+  color: var(--muted);
+  padding: 12px
+}
+
+.card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .06)
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: .85rem;
+  margin-bottom: 8px
+}
+
+.card-prompt {
+  font-weight: 600;
+  margin-bottom: 8px
+}
+
+.card-response {
+  white-space: pre-wrap;
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #eef2f7
+}
+
+.footer {
+  margin-top: 20px;
+  color: var(--muted);
+  text-align: center
+}
+
+.image-container {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+
+.image-container img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 512px;
+  max-height: 250px;
+}
+
+.mode-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.mode-toggle button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #e2e8f0;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.mode-toggle button.active {
+  background-color: #007bff;
+}
+
+@media (max-width:600px) {
+  .container {
+    padding: 12px;
+    margin: 12px
+  }
+}
