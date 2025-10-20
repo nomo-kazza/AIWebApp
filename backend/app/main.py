@@ -1,13 +1,8 @@
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import os
-import importlib
-import importlib.util
-from typing import Optional, Any
 from .schemas import PromptRequest, PromptResponse
-import traceback
 import datetime
 
 # Optional: load environment variables from a local `.env` file in the backend
