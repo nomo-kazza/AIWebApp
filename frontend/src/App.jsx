@@ -138,7 +138,7 @@ export default function App() {
 
 
       <footer className="footer">
-        <small>Built with FastAPI + OpenAI • Deploy to AWS</small>
+        <small>Built with FastAPI + OpenAI • Deploy to <a href='https://render.com' target='_blank'>Render</a></small>
       </footer>
     </div>
   )
