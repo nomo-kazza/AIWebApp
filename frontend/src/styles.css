@@ -143,11 +143,14 @@ button[disabled] {
   border: none;
   border-radius: 8px;
   background: #e2e8f0;
-  color: white;
+  color: #7e7e81;
   cursor: pointer;
   font-weight: bold;
 }
 
+.mode-toggle button.active {
+  color: white
+}
 
 .mode-toggle button.active {
   background-color: #007bff;
