@@ -13,13 +13,19 @@ export default function App() {
   const [mode, setMode] = useState('text');
 
   useEffect(() => {
-    const saved = localStorage.getItem('ai_history')
-    if (saved) setHistory(JSON.parse(saved))
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('ai_history', JSON.stringify(history))
-  }, [history])
+    async function fetchHistory() {
+      const endpoint = mode === 'text' ? '/api/history' : '/api/image-history';
+      try {
+        const resp = await fetch(`${API_BASE}${endpoint}`);
+        if (!resp.ok) throw new Error('Failed to fetch history');
+        const data = await resp.json();
+        setHistory(data.history || []);
+      } catch (err) {
+        setHistory([]);
+      }
+    }
+    fetchHistory();
+  }, [mode])
 
 
   async function handleSubmit(e) {
@@ -33,7 +39,12 @@ export default function App() {
       const resp = await fetch(`${API_BASE}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({
+          prompt,
+          model: mode === 'text' ? "gpt-4o" : "dall-e-3",
+          max_tokens: 512,
+          temperature: 0.7,
+        }),
       })
 
 
@@ -46,10 +57,11 @@ export default function App() {
       const entry = {
         id: data.id || Date.now().toString(),
         prompt: data.prompt,
-        response: mode === 'text' ? data.response : data.image_url,
+        image_url: data.image_url,
+        response: data.response,
         model: data.model,
         mode: mode,
-        createdAt: new Date().toISOString(),
+        createdAt: data.createdAt,
       }
 
       setHistory(prev => [entry, ...prev].slice(0, 50))
@@ -61,7 +73,9 @@ export default function App() {
     }
   }
 
-  function clearHistory() {
+  async function clearHistory() {
+    // Optionally, add a backend endpoint to clear Redis history
+    await fetch(`${API_BASE}/api/history`, { method: 'DELETE' });
     setHistory([])
   }
 

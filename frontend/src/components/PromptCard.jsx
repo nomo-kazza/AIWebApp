@@ -43,9 +43,9 @@ export default function PromptCard({ item }) {
         />
       </div>
       )}
-      {item.mode === 'image' && item.response && (
+      {item.mode === 'image' && item.image_url && (
         <div className="image-container">
-          <img src={item.response} alt="Generated result" />
+          <img src={item.image_url} alt="Generated result" />
         </div>
       )}
     </article>

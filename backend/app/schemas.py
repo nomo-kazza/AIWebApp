@@ -14,3 +14,4 @@ class PromptResponse(BaseModel):
   prompt: str
   response: str
   model: Optional[str]
+  createdAt: Optional[str]
